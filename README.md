@@ -91,7 +91,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 ![](./output_images/heatmap_w_thresh.PNG)
 
 
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
+### Here the resulting bounding boxes are drawn onto the frame:
 ![](./output_images/test_image_search.PNG)
 
 ---
