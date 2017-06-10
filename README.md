@@ -42,8 +42,8 @@ I then explored different color spaces and different `skimage.hog()` parameters 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
-![](./output_images/vehicle_HOG.png)
-![](./output_images/non_vehicle_HOG.png)
+![](./output_images/vehicle_HOG.PNG)
+![](./output_images/non_vehicle_HOG.PNG)
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
