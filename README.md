@@ -43,7 +43,7 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 
 ![](./output_images/vehicle_HOG.PNG)
-![](./output_images/non_vehicle_HOG.PNG)
+![](./output_images/non-vehicle-HOG.PNG)
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
@@ -63,15 +63,15 @@ I trained a linear SVM using...
 
 I modified the `find_cars()` function from the lessons to implement a scaled sliding window based on image location. The further away from the bottom of the image, the smaller the sliding window. These windows overlapped some to make sure that there were no missed classification areas. I also subsampled the image to only search below the horizon line. Here are some examples of raw, classified detections using this window search
 
-!["windows"](./output_images/hot_detections.png)
+![](./output_images/hot_detections.PNG)
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-!["test1"](./output_images/test_image_search.png)
-!["test2"](./output_images/test_image_search2.png)
-!["test3"](./output_images/test_image_search3.png)
+![](./output_images/test_image_search.PNG)
+![](./output_images/test_image_search2.PNG)
+![](./output_images/test_image_search3.PNG)
 ---
 
 ### Video Implementation
@@ -88,13 +88,11 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ### Here are is a sample heatmap with threshold applied:
 
-!["test3"](./output_images/heatmap_w_thresh.png)
+![](./output_images/heatmap_w_thresh.PNG)
 
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
-!["test1"](./output_images/test_image_search.png)
-
-
+![](./output_images/test_image_search.PNG)
 
 ---
 
