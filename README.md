@@ -29,6 +29,8 @@ You're reading it!
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
+The code for this project is located in the IPython notebook [vehicle_detection.ipynb](https://github.com/emiranda927/CarND-Advanced-Lane-Lines/blob/master/vehicle_detection.ipynb)
+
 The code for actually extracting HOG features is contained in the first code cell of the IPython notebook within the function `get_hog_features()`.  
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
