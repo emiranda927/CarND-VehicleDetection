@@ -45,7 +45,7 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 !["vehicle"](./output_images/vehicle_HOG.png)
 !["not vehicle"](./output_images/non_vehicle_HOG.png)
 
-####2. Explain how you settled on your final choice of HOG parameters.
+#### 2. Explain how you settled on your final choice of HOG parameters.
 
 Settling on HOG parameters was a matter of trial and error. Changing the HOG parameters from the default values from the lessons didn't do much to improve performance. In the end, changing the orientations from 8 to 9 was the only big change I made. Changing the HOG channel from "ALL" vastly reduced the performance of the classifier (but increased speed) and was ultimately not worth the gain in speed.
 
@@ -53,19 +53,19 @@ Changing the spatial binning dimensions and the number of histogram bins for spa
 
 I would like future implementations of this pipeline to be optimized for speed without sacrificing performance.
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I trained a linear SVM using...
 
-###Sliding Window Search
+### Sliding Window Search
 
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 I modified the `find_cars()` function from the lessons to implement a scaled sliding window based on image location. The further away from the bottom of the image, the smaller the sliding window. These windows overlapped some to make sure that there were no missed classification areas. I also subsampled the image to only search below the horizon line. Here are some examples of raw, classified detections using this window search
 
 !["windows"](./output_images/hot_detections.png)
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
@@ -76,11 +76,11 @@ Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spat
 
 ### Video Implementation
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [link to my video result](./out_video.mp4)
 
 
-####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
@@ -98,9 +98,9 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 There were a few issues I faced while completing this pipeline. The first, most obvious issue, was one where the bounding boxes were jumping and changing sizes dramatically through every frame of the video. In order to combat this, I implemented a `Bbox()` class that tracked the last ~20 frames worth of detections, and averaged them together. This smoothed out the frames and kept a more constant bounding box under the assumption that the vehicle shape, size, position shouldn't change dramatically from frame to frame. This did come with the drawback of a "lagging" effect. Because the vehicles are moving through the video stream, averaging the detections together often caused the resulting box to lag a bit behind the centroid of the vehicle. I had to compromise between this performance and smooth classifications.
 
